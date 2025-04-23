@@ -29,7 +29,6 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g0xx_hal.h"
 
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -62,36 +61,6 @@ void Error_Handler(void);
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
-#define REED_SWITCH_Pin GPIO_PIN_7
-#define REED_SWITCH_GPIO_Port GPIOB
-
-#define PANIC_BUTTON_Pin GPIO_PIN_0
-#define PANIC_BUTTON_GPIO_Port GPIOB
-
-#define MOTION_SENSOR_Pin GPIO_PIN_4
-#define MOTION_SENSOR_GPIO_Port GPIOA
-
-#define RAIN_SENSOR_D_Pin GPIO_PIN_7
-#define RAIN_SENSOR_D_GPIO_Port GPIOA
-
-#define DHT21_Pin GPIO_PIN_5
-#define DHT21_Port GPIOA
-
-#define MQ7_Pin GPIO_PIN_6
-#define MQ7_Port GPIOA
-
-
-
-typedef enum {
-    SENSOR_STATE_OFF = 0,
-    SENSOR_STATE_ON  = 1
-} eSensorState_t;
-
-typedef enum {
-    SENSOR_TYPE_DIGITAL,
-    SENSOR_TYPE_ANALOG,
-    SENSOR_TYPE_SPECIAL
-} eSensorType_t;
 
 #ifdef __cplusplus
 }

@@ -41,14 +41,40 @@ void sensorController_eventloop(stSensorController_t* me)
         me->panicButtonState       = readDigitalSensor(PANIC_BUTTON_GPIO_Port, PANIC_BUTTON_Pin);
         me->rainSensorDigitalState = readDigitalSensor(RAIN_SENSOR_D_GPIO_Port, RAIN_SENSOR_D_Pin);
 
-        me->gasSensorAnalogValue   = readAnalogSensor(&hadc1, ADC_CHANNEL_4);
+       /* me->gasSensorAnalogValue   = readAnalogSensor(&hadc1, ADC_CHANNEL_4);
         me->rainSensorAnalogValue  = readAnalogSensor(&hadc1, ADC_CHANNEL_5);
-    }
+   */ }
     else
     {
         me->sensorUpdateFlag = false;
     }
 }
+
+eSensorState_t readDigitalSensor(GPIO_TypeDef* port, uint16_t pin)
+{
+	if (HAL_GPIO_ReadPin(port,pin) == GPIO_PIN_SET)
+		return SENSOR_STATE_ON;
+	else
+		return SENSOR_STATE_OFF;
+}
+
+/*
+uint16_t readAnalogSensor(ADC_HandleTypeDef* hadc, uint32_t channel)
+{
+	  ADC_ChannelConfTypeDef sConfig = {0};
+
+	    sConfig.Channel = channel;
+	    sConfig.Rank = ADC_RANK_CHANNEL_NUMBER;
+	    sConfig.SamplingTime = ADC_SAMPLINGTIME_COMMON_1;
+
+	    HAL_ADC_ConfigChannel(hadc, &sConfig);
+
+	    HAL_ADC_Start(hadc);
+	    HAL_ADC_PollForConversion(hadc, 10);
+	    uint16_t value = HAL_ADC_GetValue(hadc);
+	    HAL_ADC_Stop(hadc);
+}
+*/
 
 stSensorController_t* sensorController_getInstance(void)
 {

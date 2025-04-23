@@ -31,4 +31,7 @@ typedef struct
 stSensorController_t* sensorController_init(void);
 void sensorController_eventloop(stSensorController_t* me);
 
+eSensorState_t readDigitalSensor(GPIO_TypeDef* port, uint16_t pin);
+uint16_t readAnalogSensor(ADC_HandleTypeDef* hadc, uint32_t channel);
+
 #endif
